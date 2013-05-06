@@ -25,6 +25,7 @@
 
 % Tables and Figures
 \usepackage{booktabs} % For drawing nice tables with proper line weights
+\usepackage{float} % Floats tables and figures
 \usepackage{flafter} % To ensure that figures float only after they are defined/referenced
 \usepackage{subfig} % Figure-ception - Allows figures within figures
 \usepackage{array}  % Extends options for column formats, alignments and layouts
@@ -48,6 +49,7 @@
 \usepackage{euler} % Enables math-font support for the concrete package we call below
 
 \ifxetex
+ \DeclareTextCommandDefault{\nobreakspace}{\leavevmode\nobreak\ } 
 \usepackage{fontspec} % Allows usage of system opentype/truetype fonts
 \setsansfont[BoldFont={* Bold}]{Miso} % Sets the Header font via system font name
 \fi
@@ -55,7 +57,7 @@
 \usepackage{concrete} % Swaps out ancient Computer Modern font for Latin Modern
 
 \setkomafont{title}{\fontencoding{EU1}\sffamily\bfseries} % Typesets the document title in Miso Bold
-\setkomafont{section}{\fontencoding{EU1}\sffamily\Large\centering} % Typesets the document section in Miso and centers it
-\setkomafont{subsection}{\fontencoding{EU1}\sffamily\large} % Typesets the document subsections in Miso
-
+\setkomafont{section}{\fontencoding{EU1}\sffamily\huge\centering} % Typesets the document section in Miso and centers it
+\setkomafont{subsection}{\fontencoding{EU1}\sffamily\Large} % Typesets the document subsections in Miso
+\setkomafont{subsubsection}{\fontencoding{EU1}\sffamily\large} % Typesets the document subsections in Miso
 \endinput
