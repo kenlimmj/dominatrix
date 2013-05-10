@@ -4,7 +4,6 @@
 \RequirePackage[l2tabu,orthodox]{nag} % Checks for incorrect or obsolete LaTeX packages
 \documentclass[DIV=calc,11pt,parskip,numbers=noenddot]{scrartcl} % Uses the KOMA-Script package with customizations
 
-
 % Universal Fixes
 \usepackage{fixltx2e} % Corrects LaTeX2e bugs and quirks
 \usepackage{ifxetex} % Checks if XeTeX/XeLaTeX is the compiler-of-choice
@@ -20,10 +19,10 @@
 % Layout and Format
 \usepackage{parallel} % Aligns paragraphs across columns
 \usepackage{lineno} % Appends line-numbers in the margin with \linenumbers
-%\usepackage{showkeys} % Shows label references where they are defined. Taken out because cite-keys appear funnily floating on top of references. Very ugly.
+\usepackage[final]{showkeys} % Shows label references where they are defined.
 \usepackage{csquotes} % Fixes inline and display quotations
 \usepackage{paralist} % Allows inline enumeration in a paragraph and compact enums/lists
-\usepackage{pdflscape}
+\usepackage{pdflscape} % Allows for the occasional landscape page with correct orientation in PDFs
 
 % Tables and Figures
 \usepackage{booktabs} % For drawing nice tables with proper line weights
@@ -54,36 +53,16 @@
 
 % Code in LaTeX (currently set to Java)
 \usepackage{listings} % Package for formatting code
-\lstset % Set of parameters for listings package
-{ 
-language=Java, % Chooses the language of the code
-basicstyle=\footnotesize, % Sets the size of the fonts that are used for the code
-numbers=left, % Positions the line-numbers
-numberstyle=\footnotesize, % Sets the size of the fonts that are used for the line-numbers
-stepnumber=1, % Sets the step between two line-numbers. If it is 1 each line will be numbered
-numbersep=5pt, % Sets how far the line-numbers are from the code
-backgroundcolor=\color{white},  % Chooses the background color. You must add \usepackage{color}
-showspaces=false, % Shows spaces adding particular underscores
-showstringspaces=false, % Underlines spaces within strings
-showtabs=false, % Shows tabs within strings adding particular underscores
-frame=none, % Adds a frame around the code
-tabsize=2, % Sets default tabsize to 2 spaces
-captionpos=b, % Sets the caption-position to bottom
-breaklines=true, % Sets automatic line breaking
-breakatwhitespace=false, % Sets if automatic breaks should only happen at whitespace
-escapeinside={\%*}{*)} % Formats comments
-}
 
 \ifxetex
- \DeclareTextCommandDefault{\nobreakspace}{\leavevmode\nobreak\ } 
-\usepackage{fontspec} % Allows usage of system opentype/truetype fonts
-\setsansfont[BoldFont={* Bold}]{Miso} % Sets the Header font via system font name
+  \DeclareTextCommandDefault{\nobreakspace}{\leavevmode\nobreak\ }
+  \usepackage{fontspec} % Allows usage of system opentype/truetype fonts
+  \setsansfont[BoldFont={* Bold}]{Miso} % Sets the Header font via system font name
+  \setkomafont{title}{\fontencoding{EU1}\sffamily\bfseries} % Typesets the document title in Miso Bold
+  \setkomafont{section}{\fontencoding{EU1}\sffamily\huge\centering} % Typesets the document section in Miso and centers it
+  \setkomafont{subsection}{\fontencoding{EU1}\sffamily\Large} % Typesets the document subsections in Miso
+  \setkomafont{subsubsection}{\fontencoding{EU1}\sffamily\large} % Typesets the document subsections in Miso
 \fi
-\usepackage[T1]{fontenc} % Sets output font encoding to support accented characters and Type 1 fonts
-\usepackage{concrete} % Swaps out ancient Computer Modern font for Latin Modern
-
-\setkomafont{title}{\fontencoding{EU1}\sffamily\bfseries} % Typesets the document title in Miso Bold
-\setkomafont{section}{\fontencoding{EU1}\sffamily\huge\centering} % Typesets the document section in Miso and centers it
-\setkomafont{subsection}{\fontencoding{EU1}\sffamily\Large} % Typesets the document subsections in Miso
-\setkomafont{subsubsection}{\fontencoding{EU1}\sffamily\large} % Typesets the document subsections in Miso
+  \usepackage[T1]{fontenc} % Sets output font encoding to support accented characters and Type 1 fonts
+  \usepackage{concrete} % Swaps out ancient Computer Modern font for Latin Modern
 \endinput
