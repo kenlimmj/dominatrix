@@ -2,23 +2,25 @@
 \ProvidesPackage{dominatrix}
 
 \RequirePackage[l2tabu,orthodox]{nag} % Checks for incorrect or obsolete LaTeX packages
+\RequrePackage{fix-cm}
 \documentclass[DIV=calc,11pt,parskip,numbers=noenddot]{scrartcl} % Uses the KOMA-Script package with customizations
 
 % Universal Fixes
 \usepackage{fixltx2e} % Corrects LaTeX2e bugs and quirks
-\usepackage{ifxetex} % Checks if XeTeX/XeLaTeX is the compiler-of-choice
+\usepackage{ifxetex}  % Checks if XeTeX/XeLaTeX is the compiler-of-choice
 
 % Math
-\usepackage{amsmath} % Swiss-knife math package
+\usepackage{amsmath}  % Swiss-knife math package
 
 % Graphics
 \usepackage{tikz} % Engine that produces vector graphics from geometric/algebraic descriptions
 \usepackage{graphicx} % Allows inserting of graphics and images
 \usepackage{epstopdf} % Converts .eps files to .pdf for easy manipulation
+\usepackage{pgfgantt} % Leverages TikZ for drawing Gantt Charts
 
 % Layout and Format
 \usepackage{parallel} % Aligns paragraphs across columns
-\usepackage{lineno} % Appends line-numbers in the margin with \linenumbers
+\usepackage{lineno} % Appends line-numbers in the margin if \linenumbers is declared
 \usepackage[final]{showkeys} % Shows label references where they are defined.
 \usepackage{csquotes} % Fixes inline and display quotations
 \usepackage{paralist} % Allows inline enumeration in a paragraph and compact enums/lists
@@ -39,7 +41,7 @@
 \usepackage[longnamesfirst]{natbib} % Reimplements \cite to work with author-year and numerical citations
 \usepackage{cleveref} % Adds semantic naming when referencing figures
 \usepackage{varioref} % Introduces referencing by page instead of figure number
-
+\usepackage{datenumber} % Provides commands to convert a date into a number
 
 % Fonts and Typography
 \usepackage{microtype} % Tweaks smallish fonts and kernings
@@ -49,13 +51,12 @@
 \usepackage{url} % Allows encapsulated URLs to break across lines
 \usepackage[colorlinks,hypertexnames=false,plainpages=false]{hyperref} % Converts \url references to valid hyperlinks in PDF documents
 \usepackage{euler} % Enables math-font support for the concrete package we call below
-\usepackage[super]{nth} % Automatically does superscripting for "st" "rd" "th" in "1st" "2nd" etc. by using the command \nth{n}. eg. \nth{1} produces 1st with "st" superscript
+\usepackage[super]{nth} % Automatically superscripts counters
 
 % Code in LaTeX (currently set to Java)
 \usepackage{listings} % Package for formatting code
 
 \ifxetex
-  \DeclareTextCommandDefault{\nobreakspace}{\leavevmode\nobreak\ }
   \usepackage{fontspec} % Allows usage of system opentype/truetype fonts
   \setsansfont[BoldFont={* Bold}]{Miso} % Sets the Header font via system font name
   \setkomafont{title}{\fontencoding{EU1}\sffamily\bfseries} % Typesets the document title in Miso Bold
@@ -64,5 +65,5 @@
   \setkomafont{subsubsection}{\fontencoding{EU1}\sffamily\large} % Typesets the document subsections in Miso
 \fi
   \usepackage[T1]{fontenc} % Sets output font encoding to support accented characters and Type 1 fonts
-  \usepackage{concrete} % Swaps out ancient Computer Modern font for Latin Modern
+  \usepackage{concrete} % Swaps out Computer Modern for Concrete
 \endinput
