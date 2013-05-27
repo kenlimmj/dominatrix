@@ -2,8 +2,6 @@
 
 A drop-in package for the LaTeX typesetting system that implements best-practices and fixes recommended by the community-at-large.
 
-## Introduction
-
 ## Quick Start
 
 Make sure you have LaTeX installed on your system and that you can compile `.tex` files to `.pdf` or `.dvi`, whichever is your poison. If you haven't done that, we recommend:
