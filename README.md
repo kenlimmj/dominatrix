@@ -58,11 +58,8 @@ Consectetur adipiscing elit.
 
 to produce the same output.
 
-#### fixltx2e
-We use the [fixltx2e](http://texdoc.net/texmf-dist/doc/latex/base/fixltx2e.pdf) package as a polyfill for known bugs in LaTeX2e until the LaTeX Working Group releases LaTeX3.
-
-### fix-cm
-
+#### fixltx2e and fixcm
+We use the [fixltx2e and fxicm](http://texdoc.net/texmf-dist/doc/latex/base/fixltx2e.pdf) package as a polyfill for known bugs in LaTeX2e until the LaTeX Working Group releases LaTeX3. fixltx2e fixes bugs in the LaTeX kernel, while fix-cm improves the definition of the Computer Modern font families. If you'd like to know exactly what fixes they make, check out the documentation!
 
 ### Fonts and Typography
 
@@ -79,14 +76,14 @@ If a XeTeX compiler is used, we use the [fontspec]() package to load in any font
 
 tells the compiler to use `Miso` for the sans-serif font, and specifies that if a bold weight is to be used, `Miso Bold` is available for that purpose. The names `Miso` and `Miso Bold` are the exact names of the font that appear in your system. To check this:
 
-+ Windows: Go to your font directory in `PATH HERE`
++ Windows: Go to your font directory in `C:\Windows\Fonts`
 + OS X: Open Font Book and use the name of the font as it is listed
 
 If you'd like to define an italics font or the likes thereof, you can do so in a similar fashion. Check the fontspec package documentation for more wonders of the modern world.
 
-So that settles the XeTeX madness. If you're using LaTeX, life is a lot more straightforward. We use the [fontenc]() package with an option flag of `T1` to enable support for accented characters and Type 1 fonts. In simple English, this means a larger font subset and a lower chance that you'll see a weird looking 'corrupted' character, especially if you need cyrillic support.
+So that settles the XeTeX madness. If you're using LaTeX, life is a lot more straightforward. We use the [fontenc](http://www.ctan.org/pkg/fontenc) package with an option flag of `T1` to enable support for accented characters and Type 1 fonts. In simple English, this means a larger font subset and a lower chance that you'll see a weird looking 'corrupted' character, especially if you need cyrillic support.
 
-We also use [lmodern]() to call the Latin Modern font as a replacement for Computer Modern. Don't mean no disrespect, but Computer Modern was built at a time when screens weren't so pretty (or retina-ify) and there's occasions now where it doesn't work well. Latin Modern fixes those problems.
+We also use [lmodern](http://www.tug.dk/FontCatalogue/lmodern/) to call the Latin Modern font as a replacement for Computer Modern. Don't mean no disrespect, but Computer Modern was built at a time when screens weren't so pretty (or retina-ify) and there's occasions now where it doesn't work well. Latin Modern fixes those problems and provides enhanced metrics.
 
 #### Switching Fonts
 
@@ -111,31 +108,31 @@ We fix the font-size at 11pt by default via the document class. At and below 10p
 
 #### Microtype
 
-The [microtype]() package is used to tweak the appearance of fonts that appear at small sizes (e.g. captions or footnotes). Unless you'd like to specifically adjust a kerning pair, you don't need to call any commands for this to do its magic.
+The [microtype](http://raffles.nus.edu.sg/mirror/tex-archive/macros/latex/contrib/microtype/microtype.pdf) package is used to tweak the appearance and tracking for fonts that appear at small sizes (e.g. captions or footnotes). Unless you'd like to specifically adjust a kerning pair, you don't need to call any commands for this to do its magic.
 
 #### TextComp
 
-[TextComp]() Provides support for the text companion font set, which provides additional symbols, like the copyright symbol.
+[TextComp](http://home.online.no/~pjacklam/latex/textcomp.pdf) Provides support for the text companion font set, which provides additional symbols, like the copyright symbol, accents and arrow support. Check out the documentation for a full list of usable symbols.
 
 #### SIunitX
 
 Allows you to typeset SI units inline in equations. For example, if you wanted to write '3.8x10^3 kg', instead of using:
 
 ```latex
-$3.8\times10^3\textrm{kg}$
+$3.8\times10^3\textrm{kg}\,\textrm{m}\,\textrm{s}^{-1}$
 ```
 
 you can now use:
 
 ```latex
-$3.8\times10^3\kg$
+$3.8\times10^3\si{kg.m.s^{-1}}$
 ```
 
-Check the [documentation]() for a full list of supported SI units.
+Check the [documentation](ftp://ftp.tex.ac.uk/tex-archive/macros/latex/exptl/siunitx/siunitx.pdf) for a full list of supported SI units (which is kind of everything, since this is SI after all!)
 
 #### Ellipsis
 
-LaTeX best practices recommend that you use the `\ldots` command to type `...`, partly to denote the semantic difference between an ellipsis and three consecutive periods, and to fix spacing issues. The [ellipsis]() package fixes up even more stuff. Unless you're trying to do something fancy (which is really unlikely, for this case), you shouldn't need to call any commands for this to work.
+LaTeX best practices recommend that you use the `\ldots` command to type `...`, partly to denote the semantic difference between an ellipsis and three consecutive periods, and to fix spacing issues. The [ellipsis](ftp://ftp.dante.de/tex-archive/macros/latex/contrib/ellipsis/ellipsis.pdf) package fixes up even more stuff. Unless you're trying to do something fancy (which is really unlikely, for this case), you shouldn't need to call any commands for this to work.
 
 #### URL
 
@@ -145,19 +142,19 @@ If you typeset a really long URL in LaTeX, like so:
 \url{http://www.a-really-really-really-really-really-really-really-really-long-url.com/long-url}
 ```
 
-and it appears near the end of the line, LaTeX will not automatically break the URL over to the next line for you. You'll end up with a long URL string running off the edge of the page. The [url]() package corrects that behaviour so URLs break nicely and fit within the bounds of your document. You don't need to call any commands for this to work.
+and it appears near the end of the line, LaTeX will not automatically break the URL over to the next line for you. You'll end up with a long URL string running off the edge of the page. The [url](http://raffles.nus.edu.sg/mirror/tex-archive/macros/latex/contrib/url/url.pdf) package corrects that behaviour so URLs break nicely and fit within the bounds of your document. You don't need to call any commands for this to work.
 
 #### HyperRef
 
-HyperRef works if you're using PDF output. It runs through the document looking for any links inside \url{} wrappers and converts them to clickable hyperlinks in the PDF document. We call a number of option flags on the package to further customize it.
+[hyperref](http://raffles.nus.edu.sg/mirror/tex-archive/macros/latex/contrib/hyperref/README.pdf) works if you're using PDF output. It runs through the document looking for any links inside \url{} wrappers and converts them to clickable hyperlinks in the PDF document. We call a number of option flags on the package to further customize it.
 
-+ `colorlinks` to tell the package to make the link visible by changing its color. If this option is not set, hyperref will keep the link color unchanged (from the rest of the document body) and add a surrounding box around the link to demarcate it.
-+ `hypertexnames` tells hyperref to use the content of the \url{} string as the name for the link itself, without which it will expect another string passed to \url to describe the title of the hyperlink.
-+  `plainpages=false` NEEDS WORK HERE
++ `ocgcolorlinks` to tell the package to make the link visible by changing its color. If this option is not set, hyperref will keep the link color unchanged (from the rest of the document body) and add a surrounding box around the link to demarcate it.
++ `hypertexnames=false` for compatibility with subfigures
++ `plainpages=false` to ensure that page number links are unique (i.e. that they work correctly)
 
 #### Euler
 
-Since we expect to call and use different fonts in our document (i.e. fonts that are not LaTeX's default Computer Modern), we need to tell LaTeX to type equations in the same font. Euler does exactly just that, and you shouldn't need to call any additional commands for it to work unless you're using something exceptionally esoteric.
+Since we expect to call and use different fonts in our document (i.e. fonts that are not LaTeX's default Computer Modern), we need to tell LaTeX to type equations in the same font. [Euler](ftp://ctan.tug.org/tex-archive/fonts/eulervm/doc/latex/eulervm/eulervm.pdf) does exactly just that, and you shouldn't need to call any additional commands for it to work unless you're using something exceptionally esoteric.
 
 #### nth
 

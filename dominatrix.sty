@@ -44,17 +44,18 @@
 \usepackage{datenumber} % Provides commands to convert a date into a number
 
 % Fonts and Typography
-\usepackage{microtype} % Tweaks smallish fonts and kernings
+\usepackage[stretch=10,shrink=10]{microtype} % Tweaks smallish fonts and kernings
 \usepackage{textcomp} % Supports the Text Companion font, which provides additional text symbols
 \usepackage{siunitx} % Provides support for typesetting SI units
+\usepackage[ocgcolorlinks,hypertexnames=false,plainpages=false]{hyperref} % Converts \url references to valid hyperlinks in PDF documents
 \usepackage{ellipsis} % Fixes space uneveness around ellipses
 \usepackage{url} % Allows encapsulated URLs to break across lines
-\usepackage[colorlinks,hypertexnames=false,plainpages=false]{hyperref} % Converts \url references to valid hyperlinks in PDF documents
 \usepackage{euler} % Enables math-font support for the concrete package we call below
 \usepackage[super]{nth} % Automatically superscripts counters
 
 % Code
 \usepackage{listings} % Package for formatting code
+\usepackage{algorithms}
 
 \ifxetex
   \usepackage{fontspec} % Allows usage of system opentype/truetype fonts
