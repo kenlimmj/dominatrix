@@ -21,12 +21,13 @@ To use Dominatrix, just require the package in your preamble:
 ```latex
 \RequirePackage{dominatrix}
 \begin{document}
+Your content here
 \end{document}
 ```
 
 That's it! You do not need to declare the document class, e.g. `\documentclass{article}` because Dominatrix does that for you.
 
-**Since you'll hopefully be using Dominatrix as a starter for all your documents, we recommend that you put Dominatrix in a directory with a globally accessible path, or in a location which is sufficiently high-up in the file-hierarchy for you to access it easily.**
+Since you'll hopefully be using Dominatrix as a starter for all your documents, we recommend that you put Dominatrix in a directory with a globally accessible path, or in a location which is sufficiently high-up in the file-hierarchy for you to access it easily.
 
 ## Features
 
@@ -36,7 +37,10 @@ Package-by-package details are due to come in for this very soon. Until then, re
 
 Dominatrix requires LaTeX2e to work. You should be already on this version if your install is reasonably fresh (e.g. if you didn't pull the computer out of a modern day archeological dig site).
 
-Dominatrix uses the [KOMA-script](http://www.ctex.org/documents/packages/nonstd/koma-script.pdf) package as a replacement for LaTeX's default `article` class. This introduces a number of layout fixes and generally makes everything look better. KOMA-script also removes the need for you to forcibly break every line. In other words:
+Dominatrix uses the [KOMA-script](http://www.ctex.org/documents/packages/nonstd/koma-script.pdf) package as a replacement for LaTeX's default `article` class. This introduces a number of layout fixes and generally makes everything look better.
+
+### Parskip
+We've also used KOMA-script to remove the need for you to forcibly break every line. In other words:
 
 ```latex
 Lorem Ipsum Dolor Sit Amet \\
@@ -54,12 +58,126 @@ Consectetur adipiscing elit.
 
 to produce the same output.
 
+#### fixltx2e
 We use the [fixltx2e](http://texdoc.net/texmf-dist/doc/latex/base/fixltx2e.pdf) package as a polyfill for known bugs in LaTeX2e until the LaTeX Working Group releases LaTeX3.
 
-### Fonts
+### fix-cm
 
-*Font Size*
-We fix the font-size at 11pt by default. At and below 10pt, printers or monitors without subpixel anti-aliasing may have difficulty reproducing text for legibility. At 12pt you get text that is a bit bigger in exchange for less paper efficiency, though this may be preferred by some institutions. Change it to fit your needs!
+
+### Fonts and Typography
+
+#### Font Family
+
+Dominatrix has been configured to work with both LaTeX and XeTeX/XeLaTeX. If you'd like to roll your own truetype/opentype fonts, you'll have to use XeTeX/XeLaTeX because the old coot LaTeX doesn't support system fonts that aren't a part of its own library. The downside of using XeTeX/XeLaTeX with your own fonts is that compile time goes up by quite a bit - we're looking into an easier solution that works with native LaTeX. Suffer until then :)
+
+If a XeTeX compiler is used, we use the [fontspec]() package to load in any fonts that we need. For example:
+
+```latex
+\usepackage{fontspec}
+\setsansfont[BoldFont={* Bold}]{Miso}
+```
+
+tells the compiler to use `Miso` for the sans-serif font, and specifies that if a bold weight is to be used, `Miso Bold` is available for that purpose. The names `Miso` and `Miso Bold` are the exact names of the font that appear in your system. To check this:
+
++ Windows: Go to your font directory in `PATH HERE`
++ OS X: Open Font Book and use the name of the font as it is listed
+
+If you'd like to define an italics font or the likes thereof, you can do so in a similar fashion. Check the fontspec package documentation for more wonders of the modern world.
+
+So that settles the XeTeX madness. If you're using LaTeX, life is a lot more straightforward. We use the [fontenc]() package with an option flag of `T1` to enable support for accented characters and Type 1 fonts. In simple English, this means a larger font subset and a lower chance that you'll see a weird looking 'corrupted' character, especially if you need cyrillic support.
+
+We also use [lmodern]() to call the Latin Modern font as a replacement for Computer Modern. Don't mean no disrespect, but Computer Modern was built at a time when screens weren't so pretty (or retina-ify) and there's occasions now where it doesn't work well. Latin Modern fixes those problems.
+
+#### Switching Fonts
+
+You thought we were done didn't you? Here's the thing. If you're using either a system opentype/truetype font from start to end (via XeTeX), or Latin Modern (or some LaTeX-friendly font) from start to end, you're already good to go. But if you'd like to have your header be in a system opentype/truetype font and keep your body text in Latin Modern, welcome to a whole new world of hurt.
+
+Since we're using the KOMA-script package, we can specify different fonts for different parts of the document:
+
+```latex
+\setkomafont{title}{\fontencoding{EU1}\sffamily\bfseries}
+\setkomafont{section}{\fontencoding{EU1}\sffamily\huge\centering}
+\setkomafont{subsection}{\fontencoding{EU1}\sffamily\Large}
+\setkomafont{subsubsection}{\fontencoding{EU1}\sffamily\large}
+```
+
+This tells XeTeX to use the EU1 font encoding and the sans-serif font family (which basically means, to use your custom font) for the title, section, subsection and subsubsection commands in your document. We've added our own recommended styles after that, like sizing, bold weights and centering accordingly. Feel free to change this, or to use the same format to further customize aspects of your document as required.
+
+Setting your custom fonts in this way means that the rest of the document still falls back to T1 font encoding, which is your LaTeX defined font-family like Latin Modern. Savvy?
+
+#### Font Size
+
+We fix the font-size at 11pt by default via the document class. At and below 10pt, printers or monitors without subpixel anti-aliasing may have difficulty reproducing text for legibility. At 12pt you get text that is a bit bigger in exchange for less paper efficiency, though this may be preferred by some institutions. Change it to fit your needs!
+
+#### Microtype
+
+The [microtype]() package is used to tweak the appearance of fonts that appear at small sizes (e.g. captions or footnotes). Unless you'd like to specifically adjust a kerning pair, you don't need to call any commands for this to do its magic.
+
+#### TextComp
+
+[TextComp]() Provides support for the text companion font set, which provides additional symbols, like the copyright symbol.
+
+#### SIunitX
+
+Allows you to typeset SI units inline in equations. For example, if you wanted to write '3.8x10^3 kg', instead of using:
+
+```latex
+$3.8\times10^3\textrm{kg}$
+```
+
+you can now use:
+
+```latex
+$3.8\times10^3\kg$
+```
+
+Check the [documentation]() for a full list of supported SI units.
+
+#### Ellipsis
+
+LaTeX best practices recommend that you use the `\ldots` command to type `...`, partly to denote the semantic difference between an ellipsis and three consecutive periods, and to fix spacing issues. The [ellipsis]() package fixes up even more stuff. Unless you're trying to do something fancy (which is really unlikely, for this case), you shouldn't need to call any commands for this to work.
+
+#### URL
+
+If you typeset a really long URL in LaTeX, like so:
+
+```latex
+\url{http://www.a-really-really-really-really-really-really-really-really-long-url.com/long-url}
+```
+
+and it appears near the end of the line, LaTeX will not automatically break the URL over to the next line for you. You'll end up with a long URL string running off the edge of the page. The [url]() package corrects that behaviour so URLs break nicely and fit within the bounds of your document. You don't need to call any commands for this to work.
+
+#### HyperRef
+
+HyperRef works if you're using PDF output. It runs through the document looking for any links inside \url{} wrappers and converts them to clickable hyperlinks in the PDF document. We call a number of option flags on the package to further customize it.
+
++ `colorlinks` to tell the package to make the link visible by changing its color. If this option is not set, hyperref will keep the link color unchanged (from the rest of the document body) and add a surrounding box around the link to demarcate it.
++ `hypertexnames` tells hyperref to use the content of the \url{} string as the name for the link itself, without which it will expect another string passed to \url to describe the title of the hyperlink.
++  `plainpages=false` NEEDS WORK HERE
+
+#### Euler
+
+Since we expect to call and use different fonts in our document (i.e. fonts that are not LaTeX's default Computer Modern), we need to tell LaTeX to type equations in the same font. Euler does exactly just that, and you shouldn't need to call any additional commands for it to work unless you're using something exceptionally esoteric.
+
+#### nth
+
+nth saves you a lot of markup by automatically superscripting text numerary counters. In other words, instead of typing:
+
+```latex
+$1^\textrm{st}$
+$2^\textrm{nd}$
+$3^\textrm{rd}$
+$4^\textrm{th}$
+```
+
+You can now type:
+```latex
+$1^\st$
+$2^\nd$
+$3^\rd$
+$4^\th$
+```
+for the same output. Sassy eh?
 
 ## Core Dependencies
 
