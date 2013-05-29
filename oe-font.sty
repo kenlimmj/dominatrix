@@ -1,0 +1,13 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{oe-font}
+
+\ifxetex
+  \setsansfont[BoldFont={* Bold}]{Miso} % Sets the Header font via system font name
+  \setkomafont{title}{\fontencoding{EU1}\sffamily\bfseries} % Typesets the document title in Miso Bold
+  \setkomafont{section}{\fontencoding{EU1}\sffamily\huge\centering} % Typesets the document section in Miso and centers it
+  \setkomafont{subsection}{\fontencoding{EU1}\sffamily\Large} % Typesets the document subsections in Miso
+  \setkomafont{subsubsection}{\fontencoding{EU1}\sffamily\large} % Typesets the document subsections in Miso
+\fi
+  \RequirePackage[T1]{fontenc} % Sets output font encoding to support accented characters and Type 1 fonts
+  \RequirePackage{concrete} % Swaps out Computer Modern for Concrete
+\endinput

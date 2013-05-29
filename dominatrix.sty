@@ -6,8 +6,12 @@
 \documentclass[DIV=calc,11pt,parskip,numbers=noenddot]{scrartcl} % Uses the KOMA-Script package with customizations
 
 % Universal Fixes
-\usepackage{fixltx2e} % Corrects LaTeX2e bugs and quirks
 \usepackage{ifxetex}  % Checks if XeTeX/XeLaTeX is the compiler-of-choice
+\ifxetex
+  \usepackage{xltxtra}
+\fi
+  \usepackage{fixltx2e}
+\endinput
 
 % Math
 \usepackage{amsmath}  % Swiss-knife math package

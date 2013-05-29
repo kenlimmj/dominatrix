@@ -15,17 +15,25 @@ Thanks to contributions from a great community, both work out-of-the-box or with
 + [LaTeX Community](http://www.latex-community.org/forum/)
 
 To use Dominatrix, just require the package in your preamble:
-
 ```latex
 \RequirePackage{dominatrix}
 \begin{document}
 Your content here
 \end{document}
 ```
-
 That's it! You do not need to declare the document class, e.g. `\documentclass{article}` because Dominatrix does that for you.
 
-Since you'll hopefully be using Dominatrix as a starter for all your documents, we recommend that you put Dominatrix in a directory with a globally accessible path, or in a location which is sufficiently high-up in the file-hierarchy for you to access it easily.
+Since you'll hopefully be using Dominatrix as a starter for all your documents, we recommend that you clone Dominatrix to the LaTeX home directory:
+
++ Windows: `C:\Users\<user name>\texmf\tex\latex\local\`
++ Linux: `~/texmf/tex/latex/local/`
++ OS X: `/Users/<user name>/Library/texmf/tex/latex/local/`
+
+of course if you'd prefer to throw all your .sty files in their own location on your computer, you can also declare:
+```latex
+\RequirePackage{C:\..\..\dominatrix}
+```
+or the likes thereof.
 
 ## Features
 
