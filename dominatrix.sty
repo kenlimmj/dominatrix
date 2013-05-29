@@ -1,74 +1,65 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{dominatrix}
 
+% Logic Units
 \RequirePackage[l2tabu,orthodox]{nag} % Checks for incorrect or obsolete LaTeX packages
-\RequirePackage{fix-cm}
-\documentclass[DIV=calc,11pt,parskip,numbers=noenddot]{scrartcl} % Uses the KOMA-Script package with customizations
+\RequirePackage{ifxetex}  % Checks if XeTeX/XeLaTeX is the compiler-of-choice
 
 % Universal Fixes
-\usepackage{ifxetex}  % Checks if XeTeX/XeLaTeX is the compiler-of-choice
 \ifxetex
-  \usepackage{xltxtra}
+  \RequirePackage{xltxtra}
 \fi
-  \usepackage{fixltx2e}
+  \RequirePackage{fixltx2e}
+  \RequirePackage{fix-cm}
 \endinput
 
 % Math
-\usepackage{amsmath}  % Swiss-knife math package
+\RequirePackage{amsmath}  % Swiss-knife math package
 
 % Graphics
-\usepackage{tikz} % Engine that produces vector graphics from geometric/algebraic descriptions
-\usepackage{graphicx} % Allows inserting of graphics and images
-\usepackage{epstopdf} % Converts .eps files to .pdf for easy manipulation
-\usepackage{pgfgantt} % Leverages TikZ for drawing Gantt Charts
+\RequirePackage{tikz} % Engine that produces vector graphics from geometric/algebraic descriptions
+\RequirePackage{graphicx} % Allows inserting of graphics and images
+\RequirePackage{epstopdf} % Converts .eps files to .pdf for easy manipulation
+\RequirePackage{pgfgantt} % Leverages TikZ for drawing Gantt Charts
 
 % Layout and Format
-\usepackage{parallel} % Aligns paragraphs across columns
-\usepackage{lineno} % Appends line-numbers in the margin if \linenumbers is declared
-\usepackage[final]{showkeys} % Shows label references where they are defined.
-\usepackage{csquotes} % Fixes inline and display quotations
-\usepackage{paralist} % Allows inline enumeration in a paragraph and compact enums/lists
-\usepackage{pdflscape} % Allows for the occasional landscape page with correct orientation in PDFs
+\RequirePackage{parallel} % Aligns paragraphs across columns
+\RequirePackage{lineno} % Appends line-numbers in the margin if \linenumbers is declared
+\RequirePackage[final]{showkeys} % Shows label references where they are defined.
+\RequirePackage{csquotes} % Fixes inline and display quotations
+\RequirePackage{paralist} % Allows inline enumeration in a paragraph and compact enums/lists
+\RequirePackage{pdflscape} % Allows for the occasional landscape page with correct orientation in PDFs
 
 % Tables and Figures
-\usepackage{booktabs} % For drawing nice tables with proper line weights
-\usepackage{float} % Floats tables and figures
-\usepackage{flafter} % To ensure that figures float only after they are defined/referenced
-\usepackage{subcaption} % Figure-ception - Allows figures within figures
-\usepackage{array}  % Extends options for column formats, alignments and layouts
-\usepackage{tabu} % Provides better control for tables and column widths
-\usepackage{longtable} % Allows tables to span across pages - integrates with tabu
-\usepackage{multicol} % Allows spanning columns in tables
-\usepackage{caption} % Allows greater customization of captions and captions outside floats
+\RequirePackage{booktabs} % For drawing nice tables with proper line weights
+\RequirePackage{float} % Floats tables and figures
+\RequirePackage{flafter} % To ensure that figures float only after they are defined/referenced
+\RequirePackage{subcaption} % Figure-ception - Allows figures within figures
+\RequirePackage{array}  % Extends options for column formats, alignments and layouts
+\RequirePackage{tabu} % Provides better control for tables and column widths
+\RequirePackage{longtable} % Allows tables to span across pages - integrates with tabu
+\RequirePackage{multicol} % Allows spanning columns in tables
+\RequirePackage{caption} % Allows greater customization of captions and captions outside floats
 
 % Referencing
-\usepackage[longnamesfirst]{natbib} % Reimplements \cite to work with author-year and numerical citations
-\usepackage{cleveref} % Adds semantic naming when referencing figures
-\usepackage{varioref} % Introduces referencing by page instead of figure number
-\usepackage{datenumber} % Provides commands to convert a date into a number
+\RequirePackage[longnamesfirst]{natbib} % Reimplements \cite to work with author-year and numerical citations
+\RequirePackage{cleveref} % Adds semantic naming when referencing figures
+\RequirePackage{varioref} % Introduces referencing by page instead of figure number
+\RequirePackage{datenumber} % Provides commands to convert a date into a number
 
 % Fonts and Typography
-\usepackage[stretch=10,shrink=10]{microtype} % Tweaks smallish fonts and kernings
-\usepackage{textcomp} % Supports the Text Companion font, which provides additional text symbols
-\usepackage{siunitx} % Provides support for typesetting SI units
-\usepackage[ocgcolorlinks,hypertexnames=false,plainpages=false]{hyperref} % Converts \url references to valid hyperlinks in PDF documents
-\usepackage{ellipsis} % Fixes space uneveness around ellipses
-\usepackage{url} % Allows encapsulated URLs to break across lines
-\usepackage{euler} % Enables math-font support for the concrete package we call below
-\usepackage[super]{nth} % Automatically superscripts counters
+\RequirePackage[stretch=10,shrink=10]{microtype} % Tweaks smallish fonts and kernings
+\RequirePackage{textcomp} % Supports the Text Companion font, which provides additional text symbols
+\RequirePackage{siunitx} % Provides support for typesetting SI units
+\RequirePackage[ocgcolorlinks,hypertexnames=false,plainpages=false]{hyperref} % Converts \url references to valid hyperlinks in PDF documents
+\RequirePackage{ellipsis} % Fixes space uneveness around ellipses
+\RequirePackage{url} % Allows encapsulated URLs to break across lines
+\RequirePackage{eulervm} % Enables math-font support for the concrete package we call below
+\RequirePackage[super]{nth} % Automatically superscripts counters
+\RequirePackage[parfill]{parskip}
+\RequirePackage{lmodern}
 
 % Code
-\usepackage{listings} % Package for formatting code
-\usepackage{algorithms}
+\RequirePackage{listings} % Package for formatting code
+\RequirePackage{algorithms}
 
-\ifxetex
-  \usepackage{fontspec} % Allows usage of system opentype/truetype fonts
-  \setsansfont[BoldFont={* Bold}]{Miso} % Sets the Header font via system font name
-  \setkomafont{title}{\fontencoding{EU1}\sffamily\bfseries} % Typesets the document title in Miso Bold
-  \setkomafont{section}{\fontencoding{EU1}\sffamily\huge\centering} % Typesets the document section in Miso and centers it
-  \setkomafont{subsection}{\fontencoding{EU1}\sffamily\Large} % Typesets the document subsections in Miso
-  \setkomafont{subsubsection}{\fontencoding{EU1}\sffamily\large} % Typesets the document subsections in Miso
-\fi
-  \usepackage[T1]{fontenc} % Sets output font encoding to support accented characters and Type 1 fonts
-  \usepackage{concrete} % Swaps out Computer Modern for Concrete
-\endinput

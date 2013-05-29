@@ -15,13 +15,14 @@ Thanks to contributions from a great community, both work out-of-the-box or with
 + [LaTeX Community](http://www.latex-community.org/forum/)
 
 To use Dominatrix, just require the package in your preamble:
+
 ```latex
 \RequirePackage{dominatrix}
+\documentclass{article}
 \begin{document}
 Your content here
 \end{document}
 ```
-That's it! You do not need to declare the document class, e.g. `\documentclass{article}` because Dominatrix does that for you.
 
 Since you'll hopefully be using Dominatrix as a starter for all your documents, we recommend that you clone Dominatrix to the LaTeX home directory:
 
@@ -30,23 +31,28 @@ Since you'll hopefully be using Dominatrix as a starter for all your documents, 
 + OS X: `/Users/<user name>/Library/texmf/tex/latex/local/`
 
 of course if you'd prefer to throw all your .sty files in their own location on your computer, you can also declare:
+
 ```latex
 \RequirePackage{C:\..\..\dominatrix}
 ```
+
 or the likes thereof.
 
 ## Features
-
-Package-by-package details are due to come in for this very soon. Until then, read the comments in dominatrix.sty!
 
 ### Core Functionality
 
 Dominatrix requires LaTeX2e to work. You should be already on this version if your install is reasonably fresh (e.g. if you didn't pull the computer out of a modern day archeological dig site).
 
-Dominatrix uses the [KOMA-script](http://www.ctex.org/documents/packages/nonstd/koma-script.pdf) package as a replacement for LaTeX's default `article` class. This introduces a number of layout fixes and generally makes everything look better.
+For starters, we recommend the [KOMA-script](http://www.ctex.org/documents/packages/nonstd/koma-script.pdf) package as a replacement for LaTeX's default `article` class. This introduces a number of layout fixes and generally makes everything look better. To use it, declare it as your document class:
+
+```latex
+\documentclass{scrartcl}
+```
+Naturally, `scrreprt`,`scrbook` and `scrlettr` are available for their eponymous LaTeX classes. Once again, more information can be had from the documentation!
 
 ### Parskip
-We've also used KOMA-script to remove the need for you to forcibly break every line. In other words:
+We've used the parskip package to remove the need for you to forcibly break every line. In other words:
 
 ```latex
 Lorem Ipsum Dolor Sit Amet \\
@@ -69,11 +75,22 @@ We use the [fixltx2e and fxicm](http://texdoc.net/texmf-dist/doc/latex/base/fixl
 
 ### Fonts and Typography
 
+We use [lmodern](http://www.tug.dk/FontCatalogue/lmodern/) to call the Latin Modern font as a replacement for Computer Modern. Don't mean no disrespect, but Computer Modern was built at a time when screens weren't so pretty (or retina-ify) and there's occasions now where it doesn't work well. Latin Modern fixes those problems and provides enhanced metrics.
+
 #### Font Family
 
-Dominatrix has been configured to work with both LaTeX and XeTeX/XeLaTeX. If you'd like to roll your own truetype/opentype fonts, you'll have to use XeTeX/XeLaTeX because the old coot LaTeX doesn't support system fonts that aren't a part of its own library. The downside of using XeTeX/XeLaTeX with your own fonts is that compile time goes up by quite a bit - we're looking into an easier solution that works with native LaTeX. Suffer until then :)
+Dominatrix has been configured to work with both LaTeX and XeTeX/XeLaTeX. If you'd like to roll your own truetype/opentype fonts, you'll have to use XeTeX/XeLaTeX because the old coot LaTeX doesn't support system fonts that aren't a part of its own library. The downside of using XeTeX/XeLaTeX with your own fonts is that compile time goes up by quite a bit - it's basically between entering a whole world of pain creating the font metrics on your own, or bearing with a slightly longer compile time. To that, all we have to say is that our names are not Donald Knuth or Linus Torvalds.
 
-If a XeTeX compiler is used, we use the [fontspec]() package to load in any fonts that we need. For example:
+However that doesn't mean we can't make it easy. We've created a number of font-packs that can be dropped in as packages after the document class has been declared. In other words:
+
+```latex
+\RequirePackage{dominatrix}
+\documentclass{scrartcl}
+\usepackage{oe-font}
+```
+will use the font set specificed in oe-font. You'll shortly see that it's much easier to make things work this way, or at least we haven't heard of anyone dying from doing it like that just yet.
+
+If a XeTeX compiler is used (if it isn't we don't care about you), we use the [fontspec](http://download.nus.edu.sg/mirror/CTAN/macros/latex/contrib/fontspec/fontspec.pdf) package to load in any fonts that we need. For example:
 
 ```latex
 \usepackage{fontspec}
@@ -89,32 +106,27 @@ If you'd like to define an italics font or the likes thereof, you can do so in a
 
 So that settles the XeTeX madness. If you're using LaTeX, life is a lot more straightforward. We use the [fontenc](http://www.ctan.org/pkg/fontenc) package with an option flag of `T1` to enable support for accented characters and Type 1 fonts. In simple English, this means a larger font subset and a lower chance that you'll see a weird looking 'corrupted' character, especially if you need cyrillic support.
 
-We also use [lmodern](http://www.tug.dk/FontCatalogue/lmodern/) to call the Latin Modern font as a replacement for Computer Modern. Don't mean no disrespect, but Computer Modern was built at a time when screens weren't so pretty (or retina-ify) and there's occasions now where it doesn't work well. Latin Modern fixes those problems and provides enhanced metrics.
-
 #### Switching Fonts
 
 You thought we were done didn't you? Here's the thing. If you're using either a system opentype/truetype font from start to end (via XeTeX), or Latin Modern (or some LaTeX-friendly font) from start to end, you're already good to go. But if you'd like to have your header be in a system opentype/truetype font and keep your body text in Latin Modern, welcome to a whole new world of hurt.
 
-Since we're using the KOMA-script package, we can specify different fonts for different parts of the document:
+Since we're using the KOMA-script package, it's trivial for us to swap out the fonts:
 
 ```latex
-\setkomafont{title}{\fontencoding{EU1}\sffamily\bfseries}
-\setkomafont{section}{\fontencoding{EU1}\sffamily\huge\centering}
-\setkomafont{subsection}{\fontencoding{EU1}\sffamily\Large}
-\setkomafont{subsubsection}{\fontencoding{EU1}\sffamily\large}
+\renewcommand{\sectfont}{\fontencoding{EU1}\sffamily\bfseries}
 ```
 
-This tells XeTeX to use the EU1 font encoding and the sans-serif font family (which basically means, to use your custom font) for the title, section, subsection and subsubsection commands in your document. We've added our own recommended styles after that, like sizing, bold weights and centering accordingly. Feel free to change this, or to use the same format to further customize aspects of your document as required.
+This tells XeTeX to use the EU1 font encoding and the sans-serif font family (which basically means, to use your custom font) for all the section and title headings. We've added a bold weight to the headings. Feel free to change this, or to use the same format to further customize aspects of your document as required.
 
 Setting your custom fonts in this way means that the rest of the document still falls back to T1 font encoding, which is your LaTeX defined font-family like Latin Modern. Savvy?
 
 #### Font Size
 
-We fix the font-size at 11pt by default via the document class. At and below 10pt, printers or monitors without subpixel anti-aliasing may have difficulty reproducing text for legibility. At 12pt you get text that is a bit bigger in exchange for less paper efficiency, though this may be preferred by some institutions. Change it to fit your needs!
+The font-size in KOMA-script is fixed at 11pt by default. At and below 10pt, printers or monitors without subpixel anti-aliasing may have difficulty reproducing text for legibility. At 12pt you get text that is a bit bigger in exchange for less paper efficiency, though this may be preferred by some institutions. Change it to fit your needs!
 
 #### Microtype
 
-The [microtype](http://raffles.nus.edu.sg/mirror/tex-archive/macros/latex/contrib/microtype/microtype.pdf) package is used to tweak the appearance and tracking for fonts that appear at small sizes (e.g. captions or footnotes). Unless you'd like to specifically adjust a kerning pair, you don't need to call any commands for this to do its magic.
+The [microtype](http://raffles.nus.edu.sg/mirror/tex-archive/macros/latex/contrib/microtype/microtype.pdf) package is used to tweak the appearance and tracking for fonts that appear at small sizes (e.g. captions or footnotes). Unless you'd like to specifically adjust a kerning pair, you don't need to call any commands for this to do its magic. Note however, that because XeTeX gives us so much awesome with using opentype fonts, the tradeoff is that not everything from microtype works. What, you were expecting gallivanting little ponies?
 
 #### TextComp
 
@@ -158,9 +170,9 @@ and it appears near the end of the line, LaTeX will not automatically break the 
 + `hypertexnames=false` for compatibility with subfigures
 + `plainpages=false` to ensure that page number links are unique (i.e. that they work correctly)
 
-#### Euler
+#### Eulervm
 
-Since we expect to call and use different fonts in our document (i.e. fonts that are not LaTeX's default Computer Modern), we need to tell LaTeX to type equations in the same font. [Euler](ftp://ctan.tug.org/tex-archive/fonts/eulervm/doc/latex/eulervm/eulervm.pdf) does exactly just that, and you shouldn't need to call any additional commands for it to work unless you're using something exceptionally esoteric.
+Since we expect to call and use different fonts in our document (i.e. fonts that are not LaTeX's default Computer Modern), we need to tell LaTeX to type equations in the same font. [Eulervm](ftp://ctan.tug.org/tex-archive/fonts/eulervm/doc/latex/eulervm/eulervm.pdf) does exactly just that, and you shouldn't need to call any additional commands for it to work unless you're using something exceptionally esoteric.
 
 #### nth
 
@@ -186,7 +198,6 @@ for the same output. Sassy eh?
 
 + [LaTeX](http://www.latex-project.org/)
 + [CTAN](http://www.ctan.org/)
-+ [Miso Font](http://www.fontsquirrel.com/fonts/Miso)
 
 ## Versioning
 
