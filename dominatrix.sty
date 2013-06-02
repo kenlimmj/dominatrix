@@ -16,12 +16,6 @@
 % Math
 \RequirePackage{amsmath}  % Swiss-knife math package
 
-% Graphics
-\RequirePackage{tikz} % Engine that produces vector graphics from geometric/algebraic descriptions
-\RequirePackage{graphicx} % Allows inserting of graphics and images
-\RequirePackage{epstopdf} % Converts .eps files to .pdf for easy manipulation
-\RequirePackage{pgfgantt} % Leverages TikZ for drawing Gantt Charts
-
 % Layout and Format
 \RequirePackage{parallel} % Aligns paragraphs across columns
 \RequirePackage{lineno} % Appends line-numbers in the margin if \linenumbers is declared
@@ -29,17 +23,6 @@
 \RequirePackage{csquotes} % Fixes inline and display quotations
 \RequirePackage{paralist} % Allows inline enumeration in a paragraph and compact enums/lists
 \RequirePackage{pdflscape} % Allows for the occasional landscape page with correct orientation in PDFs
-
-% Tables and Figures
-\RequirePackage{booktabs} % For drawing nice tables with proper line weights
-\RequirePackage{float} % Floats tables and figures
-\RequirePackage{flafter} % To ensure that figures float only after they are defined/referenced
-\RequirePackage{subcaption} % Figure-ception - Allows figures within figures
-\RequirePackage{array}  % Extends options for column formats, alignments and layouts
-\RequirePackage{tabu} % Provides better control for tables and column widths
-\RequirePackage{longtable} % Allows tables to span across pages - integrates with tabu
-\RequirePackage{multicol} % Allows spanning columns in tables
-\RequirePackage{caption} % Allows greater customization of captions and captions outside floats
 
 % Referencing
 \RequirePackage[longnamesfirst]{natbib} % Reimplements \cite to work with author-year and numerical citations
@@ -62,3 +45,19 @@
 \RequirePackage{listings} % Package for formatting code
 \RequirePackage{algorithms}
 
+% Tables and Figures
+\RequirePackage{booktabs} % For drawing nice tables with proper line weights
+\RequirePackage{float} % Floats tables and figures
+\RequirePackage{flafter} % To ensure that figures float only after they are defined/referenced
+\RequirePackage{subcaption} % Figure-ception - Allows figures within figures
+\RequirePackage{array}  % Extends options for column formats, alignments and layouts
+\RequirePackage{tabu} % Provides better control for tables and column widths
+\RequirePackage{longtable} % Allows tables to span across pages - integrates with tabu
+\RequirePackage{multicol} % Allows spanning columns in tables
+\RequirePackage{caption} % Allows greater customization of captions and captions outside floats
+
+% Graphics
+\RequirePackage{tikz} % Engine that produces vector graphics from geometric/algebraic descriptions
+\RequirePackage{graphicx} % Allows inserting of graphics and images
+\RequirePackage{epstopdf} % Converts .eps files to .pdf for easy manipulation
+\RequirePackage{pgfgantt} % Leverages TikZ for drawing Gantt Charts
