@@ -14,11 +14,11 @@ Thanks to contributions from a great community, both work out-of-the-box or with
 + [LaTeX WikiBook](http://en.wikibooks.org/wiki/LaTeX)
 + [LaTeX Community](http://www.latex-community.org/forum/)
 
-To use Dominatrix, just require the package in your preamble:
+To use Dominatrix, just add the package to your preamble:
 
 ```latex
-\RequirePackage{dominatrix}
 \documentclass{article}
+\usepackage{dominatrix}
 \begin{document}
 Your content here
 \end{document}
@@ -33,7 +33,7 @@ Since you'll hopefully be using Dominatrix as a starter for all your documents, 
 of course if you'd prefer to throw all your .sty files in their own location on your computer, you can also declare:
 
 ```latex
-\RequirePackage{C:\..\..\dominatrix}
+\usepackage{C:\..\..\dominatrix}
 ```
 
 or the likes thereof.
@@ -84,8 +84,8 @@ Dominatrix has been configured to work with both LaTeX and XeTeX/XeLaTeX. If you
 However that doesn't mean we can't make it easy. We've created a number of font-packs that can be dropped in as packages after the document class has been declared. In other words:
 
 ```latex
-\RequirePackage{dominatrix}
 \documentclass{scrartcl}
+\usepackage{dominatrix}
 \usepackage{oe-font}
 ```
 will use the font set specificed in oe-font. You'll shortly see that it's much easier to make things work this way, or at least we haven't heard of anyone dying from doing it like that just yet.
