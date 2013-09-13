@@ -10,7 +10,7 @@
 
 % Math
 \usepackage{amsmath}  % Swiss-knife math package
-\usepackage{amssymb}
+\usepackage{amssymb} % Provides common mathematical symbols
 
 % Layout and Format
 \usepackage{parallel} % Aligns paragraphs across columns
@@ -37,16 +37,17 @@
 \usepackage{textcomp} % Supports the Text Companion font, which provides additional text symbols
 \usepackage{siunitx} % Provides support for typesetting SI units
 \usepackage[ocgcolorlinks,hypertexnames=false,plainpages=false]{hyperref} % Converts \url references to valid hyperlinks in PDF documents
-% \usepackage{ellipsis} % Fixes space uneveness around ellipses
+\usepackage{ellipsis} % Fixes space uneveness around ellipses
 \usepackage{url} % Allows encapsulated URLs to break across lines
 \usepackage[super]{nth} % Automatically superscripts counters
-\usepackage[parfill]{parskip}
+\usepackage[parfill]{parskip} % Removes the automatic indentation at the start of every paragraph
 \usepackage{lmodern} % Uses the lmodern font as a replacement for the dated default Computer Modern font
+\usepackage{setspace} % Provides functionality for specifying single or double spacing in the document
 
 % Code
 % \usepackage{minted} % Source code highlighting package that bridges to the Pygment library
-% \usepackage{algorithmicx} % Provides functionality for typesetting algorithms
-% \usepackage{algorithm} % Provides a floated and numbered algorithm environment
+\usepackage{algorithmicx} % Provides functionality for typesetting algorithms
+\usepackage{algorithm} % Provides a floated and numbered algorithm environment
 
 % Tables and Figures
 \usepackage{booktabs} % For drawing nice tables with proper line weights
@@ -58,6 +59,8 @@
 \usepackage{longtable} % Allows tables to span across pages - integrates with tabu
 \usepackage{multicol} % Allows spanning columns in tables
 \usepackage{caption} % Allows greater customization of captions and captions outside floats
+\usepackage{framed} % Provides an environment for creating lined boxes
+\usepackage{morefloats} % Tells LaTeX to assign a larger figure skeleton buffer
 
 % Graphics
 \usepackage{graphicx} % Allows inserting of graphics and images
