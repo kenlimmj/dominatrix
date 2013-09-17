@@ -12,6 +12,14 @@
 \usepackage{amsmath}  % Swiss-knife math package
 \usepackage{amssymb} % Provides common mathematical symbols
 
+% Theorems
+\usepackage{amsthm} % Provides functionality for a theorem and proof environment
+\newtheorem*{theorem}{Theorem}
+\newtheorem{theorem-n}{Theorem}
+\newtheorem*{definition}{Definition}
+\newtheorem{definition-n}{Definition}
+\usepackage{thmtools}
+
 % Layout and Format
 \usepackage{parallel} % Aligns paragraphs across columns
 \usepackage{lineno} % Appends line-numbers in the margin if \linenumbers is declared
@@ -42,10 +50,11 @@
 \usepackage[super]{nth} % Automatically superscripts counters
 \usepackage[parfill]{parskip} % Removes the automatic indentation at the start of every paragraph
 \usepackage{lmodern} % Uses the lmodern font as a replacement for the dated default Computer Modern font
+\usepackage[T1]{fontenc}
 \usepackage{setspace} % Provides functionality for specifying single or double spacing in the document
 
 % Code
-% \usepackage{minted} % Source code highlighting package that bridges to the Pygment library
+\usepackage{minted} % Source code highlighting package that bridges to the Pygment library
 \usepackage{algorithmicx} % Provides functionality for typesetting algorithms
 \usepackage{algorithm} % Provides a floated and numbered algorithm environment
 
