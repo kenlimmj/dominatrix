@@ -2,6 +2,9 @@
 \ProvidesPackage{dominatrix}
 
 % Logic Units
+\@ifundefined{KOMAClassName} % Checks if a KOMA-Script class has been used
+{}
+{\addtokomafont{disposition}{\rmfamily}} % Change the default KOMA-Script styling for section headers back to LaTeX style
 \usepackage[l2tabu,orthodox]{nag} % Checks for incorrect or obsolete LaTeX packages
 
 % Universal Fixes
@@ -18,7 +21,7 @@
 \newtheorem{theorem-n}{Theorem}
 \newtheorem*{definition}{Definition}
 \newtheorem{definition-n}{Definition}
-\usepackage{thmtools}
+\usepackage{thmtools} % Provides added theorem designation functionality
 
 % Layout and Format
 \usepackage{parallel} % Aligns paragraphs across columns
@@ -50,7 +53,7 @@
 \usepackage[super]{nth} % Automatically superscripts counters
 \usepackage[parfill]{parskip} % Removes the automatic indentation at the start of every paragraph
 \usepackage{lmodern} % Uses the lmodern font as a replacement for the dated default Computer Modern font
-\usepackage[T1]{fontenc}
+\usepackage[T1]{fontenc} % Magic to improve font quality
 \usepackage{setspace} % Provides functionality for specifying single or double spacing in the document
 
 % Code
