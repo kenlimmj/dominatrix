@@ -1,5 +1,5 @@
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{dominatrix}
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{dominatrix}[2013/09/30]
 
 % Logic Units
 \@ifundefined{KOMAClassName} % Checks if a KOMA-Script class has been used
@@ -14,6 +14,7 @@
 % Math
 \usepackage{amsmath}  % Swiss-knife math package
 \usepackage{amssymb} % Provides common mathematical symbols
+\usepackage{esint} % Adds additional integral symbols
 
 % Theorems
 \usepackage{amsthm} % Provides functionality for a theorem and proof environment
@@ -29,6 +30,7 @@
 \usepackage[final]{showkeys} % Shows label references where they are defined.
 \usepackage{csquotes} % Fixes inline and display quotations
 \usepackage{paralist} % Allows inline enumeration in a paragraph and compact enums/lists
+\usepackage{enumitem} % Provides fine-grain control over enumeration environments
 \usepackage{pdflscape} % Allows for the occasional landscape page with correct orientation in PDFs
 \usepackage{xspace} % Fixes spacing problem after \newcommand
 
@@ -37,6 +39,7 @@
 \usepackage{cleveref} % Adds semantic naming when referencing figures
 \usepackage{varioref} % Introduces referencing by page instead of figure number
 \usepackage{datenumber} % Provides commands to convert a date into a number
+\usepackage{todonotes} % Allows the adding of notes inline that appear when compiled
 
 % Fonts and Typography
 \usepackage[stretch=10,shrink=10]{microtype} % Tweaks smallish fonts and kernings
@@ -77,3 +80,5 @@
 % Graphics
 \usepackage{graphicx} % Allows inserting of graphics and images
 \usepackage{epstopdf} % Converts .eps files to .pdf for easy manipulation
+
+\endinput
