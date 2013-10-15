@@ -20,7 +20,17 @@
 % Theorems
 \usepackage{amsthm} % Provides functionality for a theorem and proof environment
 \newtheorem*{theorem}{Theorem}
+\makeatletter
+\newenvironment{stheorem}
+{\enskip\hspace{-1.25ex}\textbf{Theorem.\space}\itshape}
+{\enskip}
+\makeatother
 \newtheorem{theorem-n}{Theorem}
+\makeatletter
+\newenvironment{stheorem-n}
+{\enskip\refstepcounter{thm}\textbf{Theorem~\thethm.\space}\itshape}
+{\enskip}
+\makeatother
 \newtheorem*{lemma}{Lemma}
 \newtheorem{lemma-n}{Lemma}
 \newtheorem*{definition}{Definition}
