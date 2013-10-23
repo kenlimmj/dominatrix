@@ -9,9 +9,9 @@
 
 \newif\ifdominatrix@mla
 \DeclareOption{mla}{\dominatrix@mlatrue}
-\DeclareOption{nomla}{\dominatrix@mlafalse}
+\DeclareOption{no-mla}{\dominatrix@mlafalse}
 
-\ExecuteOptions{nomla}
+\ExecuteOptions{no-mla}
 \ProcessOptions\relax
 
 \ifdominatrix@mla
@@ -59,12 +59,17 @@
 \usepackage{pdflscape} % Allows for the occasional landscape page with correct orientation in PDFs
 \usepackage{xspace} % Fixes spacing problem after \newcommand
 \ifdominatrix@mla
-  \usepackage{titlesec,mla}
+  \usepackage{titlesec}
+  \usepackage{mla}
   \titleformat*{\section}{\centering\large\bfseries\sc}
 \fi
 
 % Referencing
-\usepackage[longnamesfirst]{natbib} % Reimplements \cite to work with author-year and numerical citations
+\ifdominatrix@mla
+  \usepackage[style=mla,backend=biber]{biblatex}
+\else
+  \usepackage[longnamesfirst]{natbib} % Reimplements \cite to work with author-year and numerical citations
+\fi
 \usepackage{cleveref} % Adds semantic naming when referencing figures
 \usepackage{varioref} % Introduces referencing by page instead of figure number
 \usepackage{datenumber} % Provides commands to convert a date into a number
