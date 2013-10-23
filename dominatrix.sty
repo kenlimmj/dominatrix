@@ -9,13 +9,21 @@
 
 \newif\ifdominatrix@mla
 \DeclareOption{mla}{\dominatrix@mlatrue}
-\DeclareOption{no-mla}{\dominatrix@mlafalse}
+\DeclareOption{nomla}{\dominatrix@mlafalse}
 
-\ExecuteOptions{no-mla}
+\ExecuteOptions{nomla}
 \ProcessOptions\relax
 
 \ifdominatrix@mla
   \usepackage{ifpdf}
+  \usepackage{times}
+  \usepackage{titlesec}
+  \usepackage{mla}
+  \titleformat*{\section}{\centering\large\bfseries\sc}
+  \usepackage[style=mla,backend=biber]{biblatex}
+\else
+  \usepackage{lmodern} % Uses the lmodern font as a replacement for the dated default Computer Modern font
+  \usepackage[longnamesfirst]{natbib} % Reimplements \cite to work with author-year and numerical citations
 \fi
 
 % Universal Fixes
@@ -58,18 +66,8 @@
 \usepackage{enumitem} % Provides fine-grain control over enumeration environments
 \usepackage{pdflscape} % Allows for the occasional landscape page with correct orientation in PDFs
 \usepackage{xspace} % Fixes spacing problem after \newcommand
-\ifdominatrix@mla
-  \usepackage{titlesec}
-  \usepackage{mla}
-  \titleformat*{\section}{\centering\large\bfseries\sc}
-\fi
 
 % Referencing
-\ifdominatrix@mla
-  \usepackage[style=mla,backend=biber]{biblatex}
-\else
-  \usepackage[longnamesfirst]{natbib} % Reimplements \cite to work with author-year and numerical citations
-\fi
 \usepackage{cleveref} % Adds semantic naming when referencing figures
 \usepackage{varioref} % Introduces referencing by page instead of figure number
 \usepackage{datenumber} % Provides commands to convert a date into a number
@@ -89,12 +87,8 @@
 \usepackage{url} % Allows encapsulated URLs to break across lines
 \usepackage[super]{nth} % Automatically superscripts counters
 \usepackage[parfill]{parskip} % Removes the automatic indentation at the start of every paragraph
-\usepackage{lmodern} % Uses the lmodern font as a replacement for the dated default Computer Modern font
 \usepackage[T1]{fontenc} % Magic to improve font quality
 \usepackage{setspace} % Provides functionality for specifying single or double spacing in the document
-\ifdominatrix@mla
-  \usepackage{times}
-\fi
 
 % Code
 % \usepackage{minted} % Source code highlighting package that bridges to the Pygment library
