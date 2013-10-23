@@ -7,6 +7,17 @@
 {\addtokomafont{disposition}{\rmfamily}} % Change the default KOMA-Script styling for section headers back to LaTeX style
 \usepackage[l2tabu,orthodox]{nag} % Checks for incorrect or obsolete LaTeX packages
 
+\newif\ifdominatrix@mla
+\DeclareOption{mla}{\dominatrix@mlatrue}
+\DeclareOption{nomla}{\dominatrix@mlafalse}
+
+\ExecuteOptions{nomla}
+\ProcessOptions\relax
+
+\ifdominatrix@mla
+  \usepackage{ifpdf}
+\fi
+
 % Universal Fixes
 \usepackage{fixltx2e} % Fixes a host of bugs in LaTeX2e until LaTeX3 is released
 \usepackage{fix-cm} % Fixes rendering issues with Computer Modern fonts
@@ -47,6 +58,10 @@
 \usepackage{enumitem} % Provides fine-grain control over enumeration environments
 \usepackage{pdflscape} % Allows for the occasional landscape page with correct orientation in PDFs
 \usepackage{xspace} % Fixes spacing problem after \newcommand
+\ifdominatrix@mla
+  \usepackage{titlesec,mla}
+  \titleformat*{\section}{\centering\large\bfseries\sc}
+\fi
 
 % Referencing
 \usepackage[longnamesfirst]{natbib} % Reimplements \cite to work with author-year and numerical citations
@@ -72,6 +87,9 @@
 \usepackage{lmodern} % Uses the lmodern font as a replacement for the dated default Computer Modern font
 \usepackage[T1]{fontenc} % Magic to improve font quality
 \usepackage{setspace} % Provides functionality for specifying single or double spacing in the document
+\ifdominatrix@mla
+  \usepackage{times}
+\fi
 
 % Code
 % \usepackage{minted} % Source code highlighting package that bridges to the Pygment library
