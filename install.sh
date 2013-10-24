@@ -14,8 +14,11 @@ then
   exit 1
 else
   # Set up the ../tex/latex filepath if it doesn't already exist
-  echo "Creating filepaths..."
-  sudo mkdir -p $TEXDIR/tex/latex
+  if [[ ! -d "$TEXDIR/tex/latex" ]]
+    then
+      echo "Creating filepaths..."
+      sudo mkdir -p $TEXDIR/tex/latex
+  fi
 
   # Recursively copy the appropriate directories in the current directory to the system directory
   echo "Copying files..."
