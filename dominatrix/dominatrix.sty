@@ -2,9 +2,15 @@
 \ProvidesPackage{dominatrix}[2013/09/30]
 
 % Logic Units
+\@ifclasswith{scrartcl}{twocolumn}{\setlength{\columnsep}{.5in}}{} % Expand the default column spacing by a bit if a two-column layout is set
+
 \@ifundefined{KOMAClassName} % Checks if a KOMA-Script class has been used
 {}
-{\addtokomafont{disposition}{\rmfamily}} % Change the default KOMA-Script styling for section headers back to LaTeX style
+{ % Change the default KOMA-Script styling for section headers back to LaTeX style
+  \setkomafont{title}{\rmfamily\mdseries\upshape\normalsize}
+  \setkomafont{sectioning}{\rmfamily\mdseries\upshape\normalsize}
+  \setkomafont{descriptionlabel}{\rmfamily\mdseries\upshape\normalsize}
+}
 \usepackage[l2tabu,orthodox]{nag} % Checks for incorrect or obsolete LaTeX packages
 \usepackage{atbeginend}
 
@@ -58,7 +64,7 @@
 \newtheorem*{theorem}{Theorem}
 \makeatletter
 \newenvironment{stheorem}
-{\enskip\hspace{-1.25ex}\textbf{Theorem.\space}\itshape}
+{\enskip\hspace{-1.25ex}\textbf{Theorem.\space}\itshape} % Magic number that prevents an ugly line-break before "Theorem"
 {\enskip}
 \makeatother
 \newtheorem{theorem-n}{Theorem}
@@ -80,6 +86,12 @@
 \usepackage{csquotes} % Fixes inline and display quotations
 \usepackage{paralist} % Allows inline enumeration in a paragraph and compact enums/lists
 \usepackage{enumitem} % Provides fine-grain control over enumeration environments
+%% Outsets enumeration markers so double-digit numbers and above don't spoil a ragged-right alignment
+\makeatletter\AtBeginDocument{
+  \renewcommand{\@listi}
+    {\setlength{\labelwidth}{4em}}
+}\makeatother
+%%
 \usepackage{pdflscape} % Allows for the occasional landscape page with correct orientation in PDFs
 \usepackage{xspace} % Fixes spacing problem after \newcommand
 
@@ -98,13 +110,22 @@
 \makeatother
 \usepackage{textcomp} % Supports the Text Companion font, which provides additional text symbols
 \usepackage{siunitx} % Provides support for typesetting SI units
-\usepackage[ocgcolorlinks,hypertexnames=false,plainpages=false]{hyperref} % Converts \url references to valid hyperlinks in PDF documents
+\usepackage[]{hyperref} % Converts \url references to valid hyperlinks in PDF documents
+\hypersetup{breaklinks=true, % Tells LaTeX that it's ok to split a URL across two lines, because hell hath no fury if you don't specify this
+            ocgcolorlinks=true,
+            hypertexnames=false,
+            plainpages=false,
+            bookmarks=true,
+            colorlinks=true,
+            pdfborder={0 0 0}}
+\urlstyle{same}
 \usepackage{ellipsis} % Fixes space uneveness around ellipses
 \usepackage{url} % Allows encapsulated URLs to break across lines
 \usepackage[super]{nth} % Automatically superscripts counters
 \usepackage[parfill]{parskip} % Removes the automatic indentation at the start of every paragraph
 \usepackage[T1]{fontenc} % Magic to improve font quality
 \usepackage{setspace} % Provides functionality for specifying single or double spacing in the document
+\usepackage[english]{babel} % It's called BABEL. What other questions do you have?
 
 % Code
 % \usepackage{minted} % Source code highlighting package that bridges to the Pygment library
@@ -124,9 +145,23 @@
 \usepackage{framed} % Provides an environment for creating lined boxes
 \usepackage[section]{placeins} % Implements \FloatBarrier to keep figures within their sections
 \usepackage[maxfloats=19]{morefloats} % Tells LaTeX to assign a larger figure skeleton buffer
+%% Fixes ragged-right in table elements redefining \\ commands
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\let\PBS=\PreserveBackslash
+%%
 
 % Graphics
 \usepackage{graphicx} % Allows inserting of graphics and images
+%% Sets the maximum width of all images to /maxwidth
+%% If the image does not overflow the page, it gets its normal width
+%% If the image is naughty, we cap it to the width of the column/page
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
+%%
 \usepackage{epstopdf} % Converts .eps files to .pdf for easy manipulation
 
 \endinput
