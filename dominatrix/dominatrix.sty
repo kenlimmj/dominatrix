@@ -3,6 +3,7 @@
 
 % Logic Units
 \@ifclasswith{scrartcl}{twocolumn}{\setlength{\columnsep}{.5in}}{} % Expand the default column spacing by a bit if a two-column layout is set
+\@ifclasswith{article}{twocolumn}{\setlength{\columnsep}{.5in}}{} % Expand the default column spacing by a bit if a two-column layout is set
 
 \@ifundefined{KOMAClassName} % Checks if a KOMA-Script class has been used
 {}
@@ -24,8 +25,9 @@
 \ifdominatrix@mla
   \usepackage{ifpdf} % Logic to detect if pdflatex/pdftex is being called
   \usepackage{mla} % Loads the MLA format and page margins
+  \usepackage{mathptmx} % Forcibly overrides the `times' package loaded by mla and loads the updated version instead
   \usepackage{datetime} % Allows custom formatting of dates to fit MLA requirements
-  \def\section{\@startsection{section}{1}{\z@}{-5.25ex plus -1ex minus -.2ex}{1.5ex plus .2ex}{\center}}
+  \def\section{\@startsection{section}{1}{\z@}{-5.25ex plus -1ex minus -.2ex}{1.5ex plus .2ex}{\centering}}
   \def\thesection{\arabic{section}.}
   \usepackage[style=mla,mladraft=true,annotation=true]{biblatex} % Uses BibLaTeX to handle MLA citations
   \def\@firstname{ }
@@ -94,6 +96,8 @@
 %%
 \usepackage{pdflscape} % Allows for the occasional landscape page with correct orientation in PDFs
 \usepackage{xspace} % Fixes spacing problem after \newcommand
+\usepackage[flushmargin,hang,multiple]{footmisc} % Aligns footnotes to the edge of the margin and the dividing line
+\renewcommand*{\titlepagestyle}{empty} % Removes the page number on a title page
 
 % Referencing
 \usepackage{cleveref} % Adds semantic naming when referencing figures
@@ -112,10 +116,8 @@
 \usepackage{siunitx} % Provides support for typesetting SI units
 \usepackage{hyperref} % Converts \url references to valid hyperlinks in PDF documents
 \hypersetup{breaklinks=true, % Tells LaTeX that it's ok to split a URL across two lines, because hell hath no fury if you don't specify this
-            ocgcolorlinks=true,
             hypertexnames=false,
             plainpages=false,
-            bookmarks=true,
             colorlinks=true,
             pdfborder={0 0 0}}
 \urlstyle{same}
@@ -152,16 +154,6 @@
 
 % Graphics
 \usepackage{graphicx} % Allows inserting of graphics and images
-%% Sets the maximum width of all images to /maxwidth
-%% If the image does not overflow the page, it gets its normal width
-%% If the image is naughty, we cap it to the width of the column/page
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
-\else\Gin@nat@width\fi}
-\makeatother
-\let\Oldincludegraphics\includegraphics
-\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
-%%
 \usepackage{epstopdf} % Converts .eps files to .pdf for easy manipulation
 
 \endinput
