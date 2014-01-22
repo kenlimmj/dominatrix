@@ -13,10 +13,10 @@ then
   echo "No TeX directory detected. Unable to proceed. Exiting..."
   exit 1
 else
-  # Set up the ../tex/latex filepath if it doesn't already exist
+  # Set up the ../tex/latex file-path if it doesn't already exist
   if [[ ! -d "$TEXDIR/tex/latex" ]]
     then
-      echo "Creating filepaths..."
+      echo "Creating file-paths..."
       sudo mkdir -p $TEXDIR/tex/latex
   fi
 
