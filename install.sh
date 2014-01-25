@@ -23,10 +23,14 @@ else
   # Recursively copy the appropriate directories in the current directory to the system directory
   echo "Copying files..."
   sudo cp -R -p ${0%/*}/dominatrix $TEXDIR/tex/latex/
+  echo "Copying dominatrix..."
   sudo cp -R -p ${0%/*}/atbeginend $TEXDIR/tex/latex/
+  echo "Copying atbeginend..."
 
   echo "Done!"
 fi
 
 echo "Rehashing TeX packages so the system sees the new package"
 sudo texhash
+
+echo "Done! Exiting..."
