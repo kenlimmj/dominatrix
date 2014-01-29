@@ -44,7 +44,7 @@
   \AfterBegin{document}{
     \begin{mla}{\@firstname}{\@lastname}{\@professor}{\@class}{\datef\@date}{\textnormal{\bfseries\sc\@title}}
     }
-    \BeforeEnd{document}{
+  \BeforeEnd{document}{
     \end{mla}
   }
 \else
@@ -58,6 +58,14 @@
 
 % Math
 \usepackage{mathtools} % Swiss-knife math package
+% Very hacky code that allows a vertical line in a matrix, e.g. for augmented matrices
+% This, however, cannot be used with mathtools starred matrix environments :(
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
 \usepackage{amssymb}   % Provides common mathematical symbols
 \usepackage{esint}     % Adds additional integral symbols
 \usepackage{mathdots}  % Fixes dot sizing problems for the \vdots and \ddots commands
@@ -148,7 +156,6 @@ pdfborder     = {0 0 0}
 \usepackage{caption}                                           % Allows greater customization of captions and captions outside floats
 \usepackage{framed}                                            % Provides an environment for creating lined boxes
 \usepackage[section]{placeins}                                 % Implements \FloatBarrier to keep figures within their sections
-\usepackage[maxfloats=19]{morefloats}                          % Tells LaTeX to assign a larger figure skeleton buffer
 \newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp} % Fixes ragged-right in table elements redefining \\ commands
 \let\PBS=\PreserveBackslash
 
