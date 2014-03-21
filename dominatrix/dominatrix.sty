@@ -55,6 +55,7 @@
 % Universal Fixes
 \usepackage{fixltx2e} % Fixes a host of bugs in LaTeX2e until LaTeX3 is released
 \usepackage{fix-cm}   % Fixes rendering issues with Computer Modern fonts
+\usepackage{exscale} % Fixes a bug in operator rendering at large font sizes
 
 % Math
 \usepackage{mathtools} % Swiss-knife math package
@@ -72,6 +73,8 @@
 \usepackage{esint}     % Provides access to alternate integration symbols
 \numberwithin{equation}{section} % Restarts the equation number count at every section
 \usepackage{turnstile} % Provides functionality for typesetting advanced turnstiles (in logic)
+\usepackage{braket} % Provides the \Set{} environment, allowing us to use nice vertical bars
+\usepackage{relsize} % Defines the \mathlarger macro for establishing hierarchy with sequential operators
 
 % Theorems
 \usepackage{amsthm} % Provides functionality for a theorem and proof environment
