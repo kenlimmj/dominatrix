@@ -55,7 +55,7 @@
 % Universal Fixes
 \usepackage{fixltx2e} % Fixes a host of bugs in LaTeX2e until LaTeX3 is released
 \usepackage{fix-cm}   % Fixes rendering issues with Computer Modern fonts
-\usepackage{exscale} % Fixes a bug in operator rendering at large font sizes
+\usepackage{exscale}  % Fixes a bug in operator rendering at large font sizes
 
 % Math
 \usepackage{mathtools} % Swiss-knife math package
@@ -63,18 +63,18 @@
 % This, however, cannot be used with mathtools starred matrix environments :(
 \makeatletter
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
-  \hskip -\arraycolsep
+  \hskip - \arraycolsep
   \let\@ifnextchar\new@ifnextchar
   \array{#1}}
 \makeatother
-\usepackage{amssymb}   % Provides common mathematical symbols
-\usepackage{esint}     % Adds additional integral symbols
-\usepackage{mathdots}  % Fixes dot sizing problems for the \vdots and \ddots commands
-\usepackage{esint}     % Provides access to alternate integration symbols
+\usepackage{amssymb}             % Provides common mathematical symbols
+\usepackage{esint}               % Adds additional integral symbols
+\usepackage{mathdots}            % Fixes dot sizing problems for the \vdots and \ddots commands
+\usepackage{esint}               % Provides access to alternate integration symbols
 \numberwithin{equation}{section} % Restarts the equation number count at every section
-\usepackage{turnstile} % Provides functionality for typesetting advanced turnstiles (in logic)
-\usepackage{braket} % Provides the \Set{} environment, allowing us to use nice vertical bars
-\usepackage{relsize} % Defines the \mathlarger macro for establishing hierarchy with sequential operators
+\usepackage{turnstile}           % Provides functionality for typesetting advanced turnstiles (in logic)
+\usepackage{braket}              % Provides the \Set{} environment, allowing us to use nice vertical bars
+\usepackage{relsize}             % Defines the \mathlarger macro for establishing hierarchy with sequential operators
 
 % Theorems
 \usepackage{amsthm} % Provides functionality for a theorem and proof environment
@@ -125,15 +125,15 @@
  \MT@exp@one@n\MT@in@clist\font@name\MT@font@list
  \ifMT@inlist@\else\xdef\MT@font@list{\MT@font@list\font@name,}\fi}
  \makeatother
-\usepackage{textcomp}                        % Supports the Text Companion font, which provides additional text symbols
-\usepackage{siunitx}                         % Provides support for typesetting SI units
-\usepackage{hyperref}                        % Converts \url references to valid hyperlinks in PDF documents
+\usepackage{textcomp}   % Supports the Text Companion font, which provides additional text symbols
+\usepackage{siunitx}    % Provides support for typesetting SI units
+\usepackage{hyperref}   % Converts \url references to valid hyperlinks in PDF documents
 \hypersetup{
-breaklinks    = true,                        % Tells LaTeX that it's ok to split a URL across two lines, because hell hath no fury if you don't specify this
+breaklinks    = true,   % Tells LaTeX that it's ok to split a URL across two lines
 hypertexnames = false,
 plainpages    = false,
-colorlinks    = true,
-pdfborder     = {0 0 0}
+colorlinks    = true,   % Color-ify links so they can be differentiated from normal text
+pdfborder     = {0 0 0} % Remove the border box drawn around links in Adobe Reader/Acrobat
 }
 \urlstyle{same}
 \usepackage{randtext}       % Provides a command to obfuscate email addresses
@@ -165,7 +165,9 @@ pdfborder     = {0 0 0}
 \let\PBS=\PreserveBackslash
 
 % Graphics
-\usepackage{graphicx} % Allows inserting of graphics and images
-\usepackage{epstopdf} % Converts .eps files to .pdf for easy manipulation
+\usepackage{graphicx}          % Allows inserting of graphics and images
+\usepackage{epstopdf}          % Converts .eps files to .pdf for easy manipulation
+\usepackage[Export]{adjustbox} % Constraints large images to the page width
+\adjustboxset{max size={\textwidth}{1.0\textheight}}
 
 \endinput
