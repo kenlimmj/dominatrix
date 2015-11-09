@@ -16,41 +16,8 @@
   \KOMAoptions{parskip=half}
 }
 \usepackage[l2tabu,orthodox]{nag} % Checks for incorrect or obsolete LaTeX packages
-\usepackage{atbeginend}
-
-\newif\ifdominatrix@mla
-\DeclareOption{mla}{\dominatrix@mlatrue}
-\DeclareOption*{nomla}{\dominatrix@mlafalse}
-
-\ExecuteOptions{nomla}
-\ProcessOptions\relax
-
-\ifdominatrix@mla
-  \usepackage{ifpdf}    % Logic to detect if pdflatex/pdftex is being called
-  \usepackage{mla}      % Loads the MLA format and page margins
-  \usepackage{mathptmx} % Forcibly overrides the `times' package loaded by mla and loads the updated version instead
-  \usepackage{datetime} % Allows custom formatting of dates to fit MLA requirements
-  \def\section{\@startsection{section}{1}{\z@}{-5.25ex plus -1ex minus -.2ex}{1.5ex plus .2ex}{\centering}}
-  \def\thesection{\arabic{section}.}
-  \usepackage[style=mla,mladraft=true,annotation=true]{biblatex} % Uses BibLaTeX to handle MLA citations
-  \def\@firstname{ }
-  \newcommand{\fname}[1]{\def\@firstname{#1}}
-  \def\@lastname{ }
-  \newcommand{\lname}[1]{\def\@lastname{#1}}
-  \newcommand{\professor}[1]{\def\@professor{#1}}
-  \newcommand{\class}[1]{\def\@class{#1}}
-  \newcommand{\essaydate}[1]{\def\@essaydate{#1}}
-  \newdateformat{datef}{\THEDAY\ \monthname[\THEMONTH] \THEYEAR}
-  \AfterBegin{document}{
-    \begin{mla}{\@firstname}{\@lastname}{\@professor}{\@class}{\datef\@date}{\textnormal{\bfseries\sc\@title}}
-    }
-  \BeforeEnd{document}{
-    \end{mla}
-  }
-\else
-  \usepackage{lmodern}                % Uses the lmodern font as a replacement for the dated default Computer Modern font
-  \usepackage[longnamesfirst]{natbib} % Reimplements \cite to work with author-year and numerical citations
-\fi
+\usepackage{lmodern}                % Uses the lmodern font as a replacement for the dated default Computer Modern font
+\usepackage[longnamesfirst]{natbib} % Reimplements \cite to work with author-year and numerical citations
 
 % Universal Fixes
 \usepackage{fixltx2e} % Fixes a host of bugs in LaTeX2e until LaTeX3 is released
@@ -149,6 +116,44 @@ pdfborder     = {0 0 0} % Remove the border box drawn around links in Adobe Read
 % \usepackage{minted} % Source code highlighting package that bridges to the Pygment library
 % \usepackage{algorithmicx} % Provides functionality for typesetting algorithms
 % \usepackage{algorithm} % Provides a floated and numbered algorithm environment
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{color}
+
+\definecolor{solarized@base03}{HTML}{002B36}
+\definecolor{solarized@base02}{HTML}{073642}
+\definecolor{solarized@base01}{HTML}{586e75}
+\definecolor{solarized@base00}{HTML}{657b83}
+\definecolor{solarized@base0}{HTML}{839496}
+\definecolor{solarized@base1}{HTML}{93a1a1}
+\definecolor{solarized@base2}{HTML}{EEE8D5}
+\definecolor{solarized@base3}{HTML}{FDF6E3}
+\definecolor{solarized@yellow}{HTML}{B58900}
+\definecolor{solarized@orange}{HTML}{CB4B16}
+\definecolor{solarized@red}{HTML}{DC322F}
+\definecolor{solarized@magenta}{HTML}{D33682}
+\definecolor{solarized@violet}{HTML}{6C71C4}
+\definecolor{solarized@blue}{HTML}{268BD2}
+\definecolor{solarized@cyan}{HTML}{2AA198}
+\definecolor{solarized@green}{HTML}{859900}
+
+\lstset{language=C++,
+        basicstyle=\ttfamily,
+        numbers=left,
+        tabsize=2,
+        breaklines=true,
+        escapeinside={@}{@},
+        numberstyle=\ttfamily\color{solarized@base01},
+        keywordstyle=\color{solarized@green},
+        stringstyle=\color{solarized@cyan}\ttfamily,
+        identifierstyle=\color{solarized@blue},
+        commentstyle=\color{solarized@base01},
+        emphstyle=\color{solarized@red},
+        frame=single,
+        rulecolor=\color{solarized@base2},
+        rulesepcolor=\color{solarized@base2},
+        showstringspaces=false
+}
 
 % Tables and Figures
 \usepackage{booktabs}                                          % For drawing nice tables with proper line weights
@@ -162,6 +167,7 @@ pdfborder     = {0 0 0} % Remove the border box drawn around links in Adobe Read
 \usepackage{caption}                                           % Allows greater customization of captions and captions outside floats
 \usepackage{framed}                                            % Provides an environment for creating lined boxes
 \usepackage[section]{placeins}                                 % Implements \FloatBarrier to keep figures within their sections
+\usepackage{cprotect}                                          % Allow \texttt and verbatim environments in captions
 \newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp} % Fixes ragged-right in table elements redefining \\ commands
 \let\PBS=\PreserveBackslash
 
