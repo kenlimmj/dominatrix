@@ -90,7 +90,7 @@
 \usepackage[stretch=10,shrink=10]{microtype} % Tweaks smallish fonts and kernings
 \makeatletter
 \def\MT@register@subst@font{
- \MT@exp@one@n\MT@in@clist\font@name\MT@font@list
+ \MT@exp@one@n\MT@in@clist\font@name\MT@font@list%
  \ifMT@inlist@\else\xdef\MT@font@list{\MT@font@list\font@name,}\fi}
  \makeatother
 \usepackage{textcomp}   % Supports the Text Companion font, which provides additional text symbols
@@ -112,47 +112,47 @@ pdfborder     = {0 0 0} % Remove the border box drawn around links in Adobe Read
 \usepackage{setspace}       % Provides functionality for specifying single or double spacing in the document
 \usepackage[english]{babel} % It's called BABEL. What other questions do you have?
 
+% Solarized colors
+\definecolor{sbase03}{HTML}{002B36}
+\definecolor{sbase02}{HTML}{073642}
+\definecolor{sbase01}{HTML}{586E75}
+\definecolor{sbase00}{HTML}{657B83}
+\definecolor{sbase0}{HTML}{839496}
+\definecolor{sbase1}{HTML}{93A1A1}
+\definecolor{sbase2}{HTML}{EEE8D5}
+\definecolor{sbase3}{HTML}{FDF6E3}
+\definecolor{syellow}{HTML}{B58900}
+\definecolor{sorange}{HTML}{CB4B16}
+\definecolor{sred}{HTML}{DC322F}
+\definecolor{smagenta}{HTML}{D33682}
+\definecolor{sviolet}{HTML}{6C71C4}
+\definecolor{sblue}{HTML}{268BD2}
+\definecolor{scyan}{HTML}{2AA198}
+\definecolor{sgreen}{HTML}{859900}
+
 % Code
 % \usepackage{minted} % Source code highlighting package that bridges to the Pygment library
 % \usepackage{algorithmicx} % Provides functionality for typesetting algorithms
 % \usepackage{algorithm} % Provides a floated and numbered algorithm environment
 \usepackage{listings}
-\usepackage{xcolor}
+\usepackage[x11names, rgb, html]{xcolor}
 \usepackage{color}
 
-\definecolor{solarized@base03}{HTML}{002B36}
-\definecolor{solarized@base02}{HTML}{073642}
-\definecolor{solarized@base01}{HTML}{586e75}
-\definecolor{solarized@base00}{HTML}{657b83}
-\definecolor{solarized@base0}{HTML}{839496}
-\definecolor{solarized@base1}{HTML}{93a1a1}
-\definecolor{solarized@base2}{HTML}{EEE8D5}
-\definecolor{solarized@base3}{HTML}{FDF6E3}
-\definecolor{solarized@yellow}{HTML}{B58900}
-\definecolor{solarized@orange}{HTML}{CB4B16}
-\definecolor{solarized@red}{HTML}{DC322F}
-\definecolor{solarized@magenta}{HTML}{D33682}
-\definecolor{solarized@violet}{HTML}{6C71C4}
-\definecolor{solarized@blue}{HTML}{268BD2}
-\definecolor{solarized@cyan}{HTML}{2AA198}
-\definecolor{solarized@green}{HTML}{859900}
-
-\lstset{language=C++,
-        basicstyle=\ttfamily,
-        numbers=left,
-        tabsize=2,
-        breaklines=true,
-        escapeinside={@}{@},
-        numberstyle=\ttfamily\color{solarized@base01},
-        keywordstyle=\color{solarized@green},
-        stringstyle=\color{solarized@cyan}\ttfamily,
-        identifierstyle=\color{solarized@blue},
-        commentstyle=\color{solarized@base01},
-        emphstyle=\color{solarized@red},
-        frame=single,
-        rulecolor=\color{solarized@base2},
-        rulesepcolor=\color{solarized@base2},
-        showstringspaces=false
+\lstset{
+  sensitive=true,
+  frame=lines,
+  xleftmargin=\parindent,
+  belowcaptionskip=1\baselineskip,
+  backgroundcolor=\color{sbase3},
+  basicstyle=\color{sbase00}\ttfamily,
+  keywordstyle=\color{scyan},
+  commentstyle=\color{sbase1},
+  stringstyle=\color{sblue},
+  numberstyle=\color{sviolet},
+  identifierstyle=\color{sbase00},
+  breaklines=true,
+  showstringspaces=false,
+  tabsize=2
 }
 
 % Tables and Figures
